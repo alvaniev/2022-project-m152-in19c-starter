@@ -1,55 +1,13 @@
 version: "3"
+
 services:
-  # docsify:
-  #   build: ./docker/docsify
-  #   container_name: m151-docsify
-  #   ports:
-  #     - "10000:10000"
-  #     - "35729:35729"
-  #   volumes:
-  #     - ./doc:/site
-  #   working_dir: /site
-  #   command: docsify serve . -p 10000 --livereload-port 35729
-
-  # plantuml:
-  #   image: "plantuml/plantuml-server:jetty"
-  #   container_name: m151-plantuml
-  #   ports:
-  #     - "10001:8080"
-
-  # web:
-  #   build: docker/web/
-  #   container_name: m151-web
-  #   ports:
-  #       - "8020:80"
-  #   volumes:
-  #       - ./web:/var/www/html
-  
   frontend:
     build:
       context: .
       dockerfile: ./docker/frontend/Dockerfile
     container_name: frontend-app
     ports:
-        - "8091:80"
+        - "8080:80"
     environment:
         - VUE_APP_BACKEND=http://localhost:3000
 
-  # adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080
-  # db:
-  #   image: mysql:8
-  #   container_name: m151-db
-  #   volumes:
-  #       - ./db-data/:/var/lib/mysql/
-  #   ports:
-  #       - "3306:3306"
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   environment:
-  #       - MYSQL_ROOT_PASSWORD=root
-  #       - MYSQL_USER=m151
-  #       - MYSQL_PASSWORD=m151
-  #       - MYSQL_DATABASE=m151
